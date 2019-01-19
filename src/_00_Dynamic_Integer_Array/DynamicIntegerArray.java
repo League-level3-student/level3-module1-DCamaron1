@@ -44,7 +44,7 @@ public class DynamicIntegerArray {
 			if (i < location) {
 				newArray[i] = numList[i];
 			}
-			if (i > location) {
+			else if (i > location) {
 				newArray[i - 1] = numList[i];
 			}
 		}
