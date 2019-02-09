@@ -1,15 +1,14 @@
 package guestbook;
 
 public class Regular implements Guest{
-	String name;
+	private String name;
 	
 	public Regular(String name) {
 		this.name=name;
 	}
 	
-	@Override
 	public String getGuestListing() {
-		return null;
+		return name;
 	}
 
 	public String toString() {

@@ -12,15 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Guestbook implements ActionListener {
-	JPanel panel = new JPanel();
-	JFrame frame = new JFrame();
-	JTextField input = new JTextField(20);
-	JButton showList = new JButton();
-	JButton addVIPButton = new JButton();
-	JButton addRegularButton = new JButton();
+	private JPanel panel = new JPanel();
+	private JFrame frame = new JFrame();
+	private JTextField input = new JTextField(20);
+	private JButton showList = new JButton();
+	private JButton addVIPButton = new JButton();
+	private JButton addRegularButton = new JButton();
 	ArrayList<Guest> list = new ArrayList<>();
 
-	public void CreateUI() {
+	public void createUI() {
 		frame.add(panel);
 		frame.setVisible(true);
 		frame.setSize(300, 100);
@@ -33,6 +33,7 @@ public class Guestbook implements ActionListener {
 		addVIPButton.setText("Add VIP");
 		addVIPButton.addActionListener(this);
 		panel.add(addRegularButton);
+		panel.setBackground(Color.black);
 		addRegularButton.setText("Add");
 		addRegularButton.addActionListener(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,19 +41,17 @@ public class Guestbook implements ActionListener {
 
 	public static void main(String[] args) {
 		Guestbook user = new Guestbook();
-		user.CreateUI();
+		user.createUI();
 	}
 
 	public String prettyList() {
 		String fullList = "";
 		for (int i = 0; i < list.size(); i++) {
-			fullList = fullList + list.get(i) + "\n";
+			fullList = fullList + list.get(i).getGuestListing() + "\n";
 		}
 		return fullList;
-
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
 		if (buttonPressed == showList) {
@@ -62,13 +61,13 @@ public class Guestbook implements ActionListener {
 		if (buttonPressed == addVIPButton) {
 			String name = input.getText();
 			list.add(new VIP(name));
+			input.setText(null);
 		}
 
 		if (buttonPressed == addRegularButton) {
 			String name = input.getText();
 			list.add(new Regular(name));
-
+			input.setText(null);
 		}
-
 	}
 }

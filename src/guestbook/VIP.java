@@ -1,16 +1,14 @@
 package guestbook;
 
 public class VIP implements Guest{
-	String name; 
+	private String name; 
 	
 	public VIP(String name) {
-		this.name= "VIP: " + name;
+		this.name= name;
 	}
 	
-	@Override
 	public String getGuestListing() {
-		
-		return null;
+		return "VIP: " + name;
 	}
 	
 	public String toString() {
