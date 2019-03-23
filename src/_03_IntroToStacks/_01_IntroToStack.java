@@ -7,28 +7,28 @@ import javax.swing.JOptionPane;
 
 public class _01_IntroToStack {
 	public static void main(String[] args) {
+		int greaterNum;
+		int lesserNum;
 
 		Stack<Double> testStack = new Stack<>();
 		for (int i = 0; i < 100; i++) {
 			testStack.push(new Random().nextDouble() * 100);
 		}
-		String answer = JOptionPane.showInputDialog("Enter a number between 0 and 100 \n(you can include 0 and 100)");
-		String answer2 = JOptionPane.showInputDialog("Enter another number between 0 and 100");
-		int answerNum = Integer.parseInt(answer);
-		int answer2Num = Integer.parseInt(answer2);
-		int greaterNum;
-		int lesserNum;
-		if (answerNum > answer2Num) {
-			greaterNum = answerNum;
-			lesserNum = answer2Num;
+		String userAnswer = JOptionPane.showInputDialog("Enter a number between 0 and 100 \n(you can include 0 and 100)");
+		String userAnswer2 = JOptionPane.showInputDialog("Enter another number between 0 and 100");
+		int userAnswerNum = Integer.parseInt(userAnswer);
+		int userAnswer2Num = Integer.parseInt(userAnswer2);
+
+		if (userAnswerNum > userAnswer2Num) {
+			greaterNum = userAnswerNum;
+			lesserNum = userAnswer2Num;
 		} else {
-			greaterNum = answer2Num;
-			lesserNum = answerNum;
+			greaterNum = userAnswer2Num;
+			lesserNum = userAnswerNum;
 		}
 		System.out.println("Popping elements off stack... \nElements between " + lesserNum + " and " + greaterNum);
-		double currentValue = 0;
 		for (int i = 0; i < 100; i++) {
-			currentValue = testStack.pop();
+			double currentValue = testStack.pop();
 			if (currentValue > lesserNum && currentValue < greaterNum) {
 				System.out.println(currentValue);
 			}
