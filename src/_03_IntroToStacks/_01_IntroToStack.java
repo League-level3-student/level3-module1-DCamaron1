@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
 
 public class _01_IntroToStack {
 	public static void main(String[] args) {
-		
-		Stack <Double> testStack = new Stack<>();  
-				for (int i = 0; i < 100; i++) {
-			testStack.push(new Random().nextDouble()*100);
+
+		Stack<Double> testStack = new Stack<>();
+		for (int i = 0; i < 100; i++) {
+			testStack.push(new Random().nextDouble() * 100);
 		}
 		String answer = JOptionPane.showInputDialog("Enter a number between 0 and 100 \n(you can include 0 and 100)");
 		String answer2 = JOptionPane.showInputDialog("Enter another number between 0 and 100");
@@ -18,21 +18,21 @@ public class _01_IntroToStack {
 		int answer2Num = Integer.parseInt(answer2);
 		int greaterNum;
 		int lesserNum;
-		if (answerNum>answer2Num) {
+		if (answerNum > answer2Num) {
 			greaterNum = answerNum;
 			lesserNum = answer2Num;
-		}
-		else {
+		} else {
 			greaterNum = answer2Num;
 			lesserNum = answerNum;
 		}
-		
 		System.out.println("Popping elements off stack... \nElements between " + lesserNum + " and " + greaterNum);
+		double currentValue = 0;
 		for (int i = 0; i < 100; i++) {
-			if (i >  lesserNum && i < greaterNum) {
-				System.out.println(testStack.pop());
+			currentValue = testStack.pop();
+			if (currentValue > lesserNum && currentValue < greaterNum) {
+				System.out.println(currentValue);
 			}
 		}
-		
+
 	}
 }
