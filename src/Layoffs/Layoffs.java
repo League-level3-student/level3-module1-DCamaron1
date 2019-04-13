@@ -45,19 +45,16 @@ public class Layoffs implements ActionListener {
 		JButton buttonPressed = (JButton) e.getSource();
 		String employeeName = nameBox.getText();
 		String layoffAmount = layoffBox.getText();
-		String layedOffList="";
-		int layoffNum = Integer.parseInt(layoffAmount);
-		
+		String layedOffList = "";
+
 		if (buttonPressed == hireButton) {
 			employees.push(employeeName);
 			nameBox.setText(null);
 			System.out.println("This person was employed: " + employeeName);
 		}
-		//if (buttonPressed==layoffButton && layoffNum> employees.capacity()) {
-		//	System.out.println("Oh No");
-		//}
+
 		else {
-			
+			int layoffNum = Integer.parseInt(layoffAmount);
 			for (int i = 0; i < layoffNum; i++) {
 				layedOffList = layedOffList + employees.pop() + "\n";
 			}
