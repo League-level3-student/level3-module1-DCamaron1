@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 public class Layoffs implements ActionListener {
 	private JFrame frame = new JFrame();
 	private JPanel panel = new JPanel();
-	private JTextField nameBox = new JTextField(15);
+	private JTextField hireBox = new JTextField(15);
 	private JTextField layoffBox = new JTextField(15);
 	private JButton hireButton = new JButton();
 	private JButton layoffButton = new JButton();
@@ -24,7 +24,7 @@ public class Layoffs implements ActionListener {
 		frame.add(panel);
 		frame.setSize(300, 100);
 		frame.setTitle("Big Business");
-		panel.add(nameBox);
+		panel.add(hireBox);
 		panel.add(hireButton);
 		panel.add(layoffBox);
 		panel.add(layoffButton);
@@ -43,13 +43,13 @@ public class Layoffs implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
-		String employeeName = nameBox.getText();
+		String employeeName = hireBox.getText();
 		String layoffAmount = layoffBox.getText();
 		String layedOffList = "";
 
 		if (buttonPressed == hireButton) {
 			employees.push(employeeName);
-			nameBox.setText(null);
+			hireBox.setText(null);
 			System.out.println("This person was employed: " + employeeName);
 		}
 
@@ -58,7 +58,7 @@ public class Layoffs implements ActionListener {
 			for (int i = 0; i < layoffNum; i++) {
 				layedOffList = layedOffList + employees.pop() + "\n";
 			}
-			JOptionPane.showMessageDialog(null, "These people were layed off: \n" + layedOffList);
+			JOptionPane.showMessageDialog(null, "These people were laid off: \n" + layedOffList);
 		}
 	}
 }
