@@ -1,33 +1,80 @@
 package _06_Intro_To_Hash_Maps;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
 
-public class _02_LogSearch {
-  /* 
-	 * Crate a HashMap of Integers for the keys and Strings for the values.
-	 * Create a GUI with three buttons. 
-	 * Button 1: Add Entry
-	 * 				When this button is clicked, use an input dialog to ask the user to enter an ID number.
-	 * 				After an ID is entered, use another input dialog to ask the user to enter a name.
-	 * 				Add this information as a new entry to your HashMap.
-	 * 
-	 * Button 2: Search by ID
-	 * 				When this button is clicked, use an input dialog to ask the user to enter an ID number.
-	 * 				If that ID exists, display that name to the user.
-	 * 				Otherwise, tell the user that that entry does not exist.
-	 * 
-	 * Button 3: View List
-	 * 				When this button is clicked, display the entire list in a message dialog in the following format:
-	 * 				ID: 123  Name: Harry Howard
-	 * 				ID: 245  Name: Polly Powers
-	 * 				ID: 433  Name: Oliver Ortega
-	 * 				etc...
-	 * 
-	 * When this is complete, add a fourth button to your window.
-	 * Button 4: Remove Entry
-	 * 				When this button is clicked, prompt the user to enter an ID using an input dialog.
-	 * 				If this ID exists in the HashMap, remove it. Otherwise, notify the user that the ID
-	 * 				is not in the list. 
-	 *
-	 * */
-	
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class _02_LogSearch implements ActionListener {
+	HashMap<Integer, String> map = new HashMap<Integer, String>();
+	private JFrame frame = new JFrame();
+	private JPanel panel = new JPanel();
+	private JButton addButton = new JButton();
+	private JButton searchButton = new JButton();
+	private JButton viewButton = new JButton();
+	private JButton removeButton = new JButton();
+
+	public void CreateUI() {
+		frame.add(panel);
+		frame.setVisible(true);
+		frame.setSize(400, 400);
+		panel.add(addButton);
+		addButton.setText("Add Entry");
+		addButton.addActionListener(this);
+		panel.add(searchButton);
+		searchButton.setText("Search by ID");
+		searchButton.addActionListener(this);
+		panel.add(viewButton);
+		viewButton.setText("View List");
+		viewButton.addActionListener(this);
+		panel.add(removeButton);
+		removeButton.setText("Remove Entry");
+		removeButton.addActionListener(this);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+
+	public static void main(String[] args) {
+		_02_LogSearch user = new _02_LogSearch();
+		user.CreateUI();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton buttonPressed = (JButton) e.getSource();
+		if (buttonPressed == addButton) {
+			String userID = JOptionPane.showInputDialog(null, "Enter an ID number (3 digits)");
+			String userName = JOptionPane.showInputDialog(null, "Enter a name");
+			Integer userIDInteger = Integer.parseInt(userID);
+			map.put(userIDInteger, userName);
+		}
+		if (buttonPressed == searchButton) {
+			String userID = JOptionPane.showInputDialog(null, "Enter an ID number (3 digits)");
+			Integer userIDInteger = Integer.parseInt(userID);
+			if (map.containsKey(userIDInteger)) {
+				JOptionPane.showMessageDialog(null, "The user is " + userIDInteger);
+			} else {
+				JOptionPane.showMessageDialog(null, "This username does not exist");
+			}
+
+		}
+		if (buttonPressed == viewButton) {
+			for (Integer i : map.keySet()) {
+				System.out.println("ID: " + i + " Name: " + map.get(i));
+			}
+		}
+		if (buttonPressed == removeButton) {
+			String userID = JOptionPane.showInputDialog(null, "Enter an ID to remove (3 digits)");
+			Integer userIDInteger = Integer.parseInt(userID);
+			if (map.containsKey(userIDInteger)) {
+				map.remove(userIDInteger);
+			} else {
+				JOptionPane.showMessageDialog(null, "\nThis ID does not exist");
+			}
+		}
+	}
 }
