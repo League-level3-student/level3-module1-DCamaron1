@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class _02_LogSearch implements ActionListener {
-	HashMap<Integer, String> map = new HashMap<Integer, String>();
+	HashMap<Integer, String> map = new HashMap<>();
 	private JFrame frame = new JFrame();
 	private JPanel panel = new JPanel();
 	private JButton addButton = new JButton();
@@ -18,7 +18,7 @@ public class _02_LogSearch implements ActionListener {
 	private JButton viewButton = new JButton();
 	private JButton removeButton = new JButton();
 
-	public void CreateUI() {
+	public void createUI() {
 		frame.add(panel);
 		frame.setVisible(true);
 		frame.setSize(400, 400);
@@ -40,7 +40,15 @@ public class _02_LogSearch implements ActionListener {
 
 	public static void main(String[] args) {
 		_02_LogSearch user = new _02_LogSearch();
-		user.CreateUI();
+		user.createUI();
+	}
+
+	public String prettyListing() {
+		String fullList = "";
+		for (Integer i : map.keySet()) {
+			fullList = fullList + "ID: " + i + " Name: " + map.get(i) + "\n";
+		}
+		return fullList;
 	}
 
 	@Override
@@ -56,16 +64,14 @@ public class _02_LogSearch implements ActionListener {
 			String userID = JOptionPane.showInputDialog(null, "Enter an ID number (3 digits)");
 			Integer userIDInteger = Integer.parseInt(userID);
 			if (map.containsKey(userIDInteger)) {
-				JOptionPane.showMessageDialog(null, "The user is " + userIDInteger);
+				JOptionPane.showMessageDialog(null, "The user is " + map.get(userIDInteger));
 			} else {
 				JOptionPane.showMessageDialog(null, "This username does not exist");
 			}
 
 		}
 		if (buttonPressed == viewButton) {
-			for (Integer i : map.keySet()) {
-				System.out.println("ID: " + i + " Name: " + map.get(i));
-			}
+			JOptionPane.showMessageDialog(null, prettyListing());
 		}
 		if (buttonPressed == removeButton) {
 			String userID = JOptionPane.showInputDialog(null, "Enter an ID to remove (3 digits)");
